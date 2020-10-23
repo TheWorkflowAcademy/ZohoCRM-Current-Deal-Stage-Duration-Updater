@@ -55,14 +55,14 @@ info "Number of Records: " + allRecords.size();
 ```javascript
 for each  a in allRecords
 {
-	//Get the current Deal Stage
+	//Get the Deal Stages
 	response2 = invokeurl
 	[
 		url :"https://www.zohoapis.com/crm/v2/Deals/" + a.get("id") + "/Stage_History"
 		type :GET
 		connection:"zohocrm"
 	];
-	//Calculate the Duration
+	//Calculate the Duration of the Current Deal Stage
 	duration = days360(response2.get("data").get(0).get("Last_Modified_Time"),today);
 	//Update field here
 	update = zoho.crm.updateRecord("Deals",a.get("id"),{"Current_Stage_Duration_Days":duration}); // Change this to your custom field API name if needed.
